@@ -1,4 +1,4 @@
-@media all and (min-width:0px) and (max-width: 320px) {
+@media only screen and (max-width: 600px) {
 body {
   background-color: white;
   overflow: hidden;
@@ -26,7 +26,8 @@ button {
 }
 button:disabled {
     pointer-events: none;
-    opacity: 0.5; /* Good UX practice to show it's disabled on mobile */
+    opacity: 0.99;
+    background-color: rgb(221, 105, 70); /* Good UX practice to show it's disabled on mobile */
 }
 
 .buttonprimary{
@@ -39,7 +40,7 @@ button:disabled {
     margin-left: 20px;
     margin-bottom:30px;
 
-    --range: calc(var(--max) - var(--min));
+  --range: calc(var(--max) - var(--min));
   --ratio: calc((var(--value) - var(--min)) / var(--range));
   --sx: calc(0.5 * 20px + var(--ratio) * (100% - 20px));
 }
