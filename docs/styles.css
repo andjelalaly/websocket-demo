@@ -1,4 +1,4 @@
-@media all and (min-width:0px) and (max-width: 480px) {
+@media screen and (max-width: 480px) {
 body {
   background-color: white;
   overflow: hidden;
