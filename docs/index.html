@@ -3,15 +3,17 @@
 <head>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
   <style>
     body {
-     font-family: "Roboto-Mono", monospace;
-     font-weight: 100;
+     font-family: "Valley Sans", sans-serif;
+     font-weight: 400;
     }
     button{
-      font-family: "Roboto-Mono", monospace;
+      font-family: "Valley Sans", sans-serif;
+      font-weight: 500;
+      font-size: 18px;
     }
   </style>
   <meta charset="UTF-8" />
@@ -19,21 +21,22 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
- <h2>Control period of noise</h2>
-    <input type="range" id="controllTD"/>
+ <div>
+    <input type="range" id="controllTD" class="slider"/><br>
 
-     <h2>Slider to control TD2</h2>
-    <input type="range" id="controllTD2"/><br>
-
+    <input type="range" id="controllTD2" class="slider"/>
+</div>
     <div id="buttonDiv">
-    <button type="button" id="button1">Click</button>
+    <button type="button" id="button1" class="buttonprimary">Click</button>
     </div>
+    <div>
     <form class="form-inline">
         <section class="form-group">
-          <label for="msgForm">Message：</label>
-          <input type="text" class="form-control" id="msgForm">
+          <label for="msgForm"><h2>Message：</h2></label> 
+          <input type="text" class="message-input" id="msgForm">
         </section>
     </form>
+    </div>
     
   <script>
     //var host = location.hostname;
@@ -67,7 +70,7 @@
        var newId =`button${buttonCount}`;
        
        var newButton = document.createElement('button');
-       newButton.innerText =`button ${buttonCount}`;
+       newButton.innerText ="Again";
        newButton.style.position ='absolute';
 
        var maxX = (window.innerWidth - (currentButton.offsetWidth || 50));
