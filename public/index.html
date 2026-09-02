@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+     font-family: "Roboto-Mono", monospace;
+     font-weight: 100;
+    }
+    button{
+      font-family: "Roboto-Mono", monospace;
+    }
+  </style>
+  <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+ <h2>Control period of noise</h2>
+    <input type="range" id="controllTD"/>
+
+     <h2>Slider to control TD2</h2>
+    <input type="range" id="controllTD2"/><br>
+
+    <div id="buttonDiv">
+    <button type="button" id="button1">Click</button>
+    </div>
+    <form class="form-inline">
+        <section class="form-group">
+          <label for="msgForm">Message：</label>
+          <input type="text" class="form-control" id="msgForm">
+        </section>
+    </form>
+    
+  <script>
+    //var host = location.hostname;
+    //console.log("Host : ", host);
+    //var ws = new WebSocket('ws://' + host + ':8080');
+    var ws = new WebSocket('wss://websocket-server-1-mo31.onrender.com');
+
+    var controlTD = document.getElementById("controllTD");
+    var controlTD2 = document.getElementById("controllTD2");
+
+    controlTD.addEventListener('input', (event) => {
+      //console.log(controlTD.value);
+    ws.send(JSON.stringify({'slider2':controlTD.value, 'slider3':controlTD2.value}))
+      
+    });
+      
+    controlTD2.addEventListener('input', (event) => {
+    //console.log(controlTD.value);
+    ws.send(JSON.stringify({'slider2':controlTD.value, 'slider3':controlTD2.value}))
+    });
+
+    var container = document.getElementById("buttonDiv");
+    var buttonCount = 1;
+    var  buttonState = {"button1" : 1 };
+    //var buttonState = { "button0": 0 };
+    
+    function addButton(currentButton, currentId){
+      currentButton.addEventListener('click', (event) => {
+       buttonState[currentId] = 1; 
+       buttonCount++;
+       var newId =`button${buttonCount}`;
+       
+       var newButton = document.createElement('button');
+       newButton.innerText =`button ${buttonCount}`;
+       newButton.style.position ='absolute';
+
+       var maxX = (window.innerWidth - (currentButton.offsetWidth || 50));
+       var maxY = (window.innerHeight - (currentButton.offsetHeight || 50 ));
+
+       var randomX = Math.floor(Math.random()* maxX)
+       var randomY = Math.floor(Math.random()* maxY)
+
+       newButton.style.left = `${randomX}px`;
+       newButton.style.top = `${randomY}px`;;
+
+       container.appendChild(newButton);
+       
+       currentButton.disabled=true;
+       addButton(newButton, newId);
+       
+       buttonState[newId] = 0;
+       
+        ws.send(JSON.stringify(buttonState)) 
+      });
+    }
+    var buttonTD = document.getElementById("button1");
+    buttonTD.style.position = 'absolute';
+    addButton(buttonTD, "button1")
+
+    
+    
+    $("form").submit(function(e){
+      var message = $("#msgForm").val();
+      $("#msgForm").val('');
+      ws.send(message);
+      e.preventDefault();
+    });
+    // Callback from server message
+    /*ws.onmessage = async function (event) {
+        var receivedMessage = event.data;
+        
+        if (receivedMessage instanceof Blob) {
+          receivedMessage = await receivedMessage.text();
+        } 
+        console.log(receivedMessage);
+        $('#message').html(receivedMessage);
+        
+        
+        // Fallback if the message from the server is just normal text, not JSON
+        document.getElementById('tdmessages').innerText = receivedMessage  ;
+        //receivedMessage = receivedMessage.replace(/'\n'/g, "<br>");
+        }*/
+      </script>
+
+
+</body>
+</html>
