@@ -7,7 +7,7 @@ const rl = readline.createInterface({
 });
 
 //const ws = new WebSocket('ws://localhost:8080'); //connect to the websocket server
-const ws = new WebSocket('wss://websocket-server-1-mo31.onrender.com'); //wss is for online
+const ws = new WebSocket('wss://andjelalaly.github.io/websocket_server/'); //wss is for online
 
 ws.on('open', () => {
     console.log('Connected to the WebSocket server'); //connection open
