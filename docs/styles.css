@@ -1,10 +1,11 @@
+@media all and (min-width:0px) and (max-width: 320px) {
 body {
   background-color: white;
 }
 
 h2 {
     font-weight:700;  
-    font-size: 30px;
+    font-size: 90px;
 }
 
 p{
@@ -38,3 +39,4 @@ input[type=range] {
   width:200px;
 
 } 
+}
