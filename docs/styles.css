@@ -1,3 +1,90 @@
+
+body {
+  background-color: white;
+}
+
+h2 {
+    font-weight:700;  
+    font-size: 30px;
+}
+
+p{
+    font-weight: 200;
+}
+button {
+   background-color: #5EC7EC;
+   color: black;
+   width:120px;
+   height: 40px;
+   margin-left: 10px;
+   margin-right: 10px;
+   position: fixed;
+   margin-bottom: 10px;
+   margin-top: 40px;
+   border:none;
+   border-radius:20px;
+}
+
+.buttonprimary{
+   margin-top: 100px;
+}
+
+.slider{
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom:30px;
+
+    --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--value) - var(--min)) / var(--range));
+  --sx: calc(0.5 * 20px + var(--ratio) * (100% - 20px));
+}
+
+.slider::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    #4287f6 0%,
+    #4287f6 var(--sx),
+    #e0e0e0 var(--sx),
+    #e0e0e0 100%
+  );
+}
+
+input[type=range] {
+-webkit-appearance:none ;
+appearance: none;
+background: transparent;
+  width:200px;
+
+} 
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 16px;
+  border-radius: 15px;
+  
+}
+
+
+
+
+input[type=range]::-webkit-progress-value {
+  background-color: red;
+  color: #5EC7EC;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height:28px;
+    width:28px;
+    background-color: black;
+    border-radius: 50%;
+    margin-top: -6px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25); 
+
+    
+}
+
 @media all and (min-width:0px) and (max-width: 320px) {
 body {
   background-color: white;
@@ -13,6 +100,7 @@ p{
 }
 button {
    background-color: #5EC7EC;
+   color: black;
    width:120px;
    height: 40px;
    margin-left: 10px;
@@ -40,3 +128,4 @@ input[type=range] {
 
 } 
 }
+

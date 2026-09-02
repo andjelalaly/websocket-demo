@@ -22,9 +22,11 @@
 </head>
 <body>
  <div>
-    <input type="range" id="controllTD" class="slider"/><br>
+    <input type="range" min="0" max="100" value="50" style="--value: 50;
+     --min: 0; --max: 100;" id="controllTD" class="slider"/><br>
 
-    <input type="range" id="controllTD2" class="slider"/>
+    <input  type="range" min="0" max="100" value="50" style="--value: 50;
+     --min: 0; --max: 100;" id="controllTD2" class="slider"/>
 </div>
     <div id="buttonDiv">
     <button type="button" id="button1" class="buttonprimary">Click</button>
@@ -39,6 +41,26 @@
     </div>
     
   <script>
+
+    const slider = document.getElementById("controllTD");
+    const output = document.querySelector('output[for="controllTD]');
+
+     const slider2 = document.getElementById("controllTD2");
+    const output2 = document.querySelector('output[for="controllTD2]');
+
+   slider.addEventListener('input', (e) => {
+   const value = e.target.value;
+   slider.style.setProperty('--value', value);
+   output.textContent = value;
+   
+});
+
+   slider2.addEventListener('input', (e) => {
+   const value2 = e.target.value;
+   slider2.style.setProperty('--value', value2);
+   output2.textContent = value2;
+   
+});
     //var host = location.hostname;
     //console.log("Host : ", host);
     //var ws = new WebSocket('ws://' + host + ':8080');
@@ -60,7 +82,7 @@
 
     var container = document.getElementById("buttonDiv");
     var buttonCount = 1;
-    var  buttonState = {"button1" : 1 };
+    var  buttonState = {"button1" : 0 };
     //var buttonState = { "button0": 0 };
     
     function addButton(currentButton, currentId){
