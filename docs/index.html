@@ -13,6 +13,8 @@
     body {
      font-family: "Valley Sans", sans-serif;
      font-weight: 400;
+     display: grid;
+
     }
     button{
       font-family: "Valley Sans", sans-serif;
@@ -25,6 +27,7 @@
 </head>
 <body>
  <div>
+  <div class="slider-container">
     <input type="range" min="0" max="100" value="50" style="--value: 50;
      --min: 0; --max: 100;" id="controllTD" class="slider"/><br>
 
@@ -37,12 +40,12 @@
     <div>
     <form class="form-inline">
         <section class="form-group">
-          <label for="msgForm"><h2>Message：</h2></label> 
+          <label for="msgForm" class="message-label"><h2>Message:</h2></label> 
           <input type="text" class="message-input" id="msgForm">
         </section>
     </form>
     </div>
-    
+   </div> 
   <script>
 
     const slider = document.getElementById("controllTD");
@@ -68,6 +71,11 @@
     //console.log("Host : ", host);
     //var ws = new WebSocket('ws://' + host + ':8080');
     var ws = new WebSocket('wss://websocket-server-x2bm.onrender.com');
+
+    ws.onopen = function(){
+      var resetState= { "button1": 0 };
+      ws.send(JSON.stringify(resetState));
+    };
 
     var controlTD = document.getElementById("controllTD");
     var controlTD2 = document.getElementById("controllTD2");
@@ -101,8 +109,8 @@
        var maxX = (window.innerWidth - (currentButton.offsetWidth || 50));
        var maxY = (window.innerHeight - (currentButton.offsetHeight || 50 ));
 
-       var randomX = Math.floor(Math.random()* maxX)
-       var randomY = Math.floor(Math.random()* maxY)
+       var randomX = Math.floor(Math.random()* Math.max(maxX-30))
+       var randomY = Math.floor(Math.random()* Math.max(maxY-30))
 
        newButton.style.left = `${randomX}px`;
        newButton.style.top = `${randomY}px`;;
