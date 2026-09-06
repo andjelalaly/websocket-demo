@@ -9,41 +9,34 @@
   <link href="https://fonts.googleapis.com/css2?family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
-  <style>
-    body {
-     font-family: "Valley Sans", sans-serif;
-     font-weight: 400;
-     display: grid;
-
-    }
-    button{
-      font-family: "Valley Sans", sans-serif;
-      font-weight: 500;
-      font-size: 18px;
-    }
-  </style>
-  
+  <style></style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
  <div>
   <div class="slider-container">
-    <input type="range" min="0" max="100" value="50" style="--value: 50;
+    <input type="range" min="0" max="100" value="30" style="--value: 30;
      --min: 0; --max: 100;" id="controllTD" class="slider"/><br>
 
-    <input  type="range" min="0" max="100" value="50" style="--value: 50;
-     --min: 0; --max: 100;" id="controllTD2" class="slider"/>
-</div>
+    <input  type="range" min="0" max="100" value="15" style="--value: 15;
+     --min: 0; --max: 100;" id="controllTD2" class="slider"/><br>
+
+</div >
 <div>
-<form class="form-inline">
-    <section class="form-group">
+  <form>
+    <div class="form-container">
       <label for="msgForm" class="message-label"><h2>What interests you?</h2></label> 
       <input type="text" class="message-input" id="msgForm">
-    </section>
-</form>
+      <input type="submit" value="send" class="send-button">
+    </div>
+  </form>
+</div>
+<div class="slider-container"> 
+  <input  type="range" min="0" max="100" value="0" style="--value: 0;
+    --min: 0; --max: 100;" id="controllTD3" class="slider"/><br>
 </div>
 <div id="buttonDiv" class="button-container">
-    <button type="button" id="button1" class="buttonprimary">Click</button>
+    <button type="button" id="button1" class="buttonprimary">click</button>
     </div>
    </div> 
   <script>
@@ -53,6 +46,9 @@
 
     const slider2 = document.getElementById("controllTD2");
     const output2 = document.querySelector('output[for="controllTD2"]');
+
+    const slider3 = document.getElementById("controllTD3");
+    const output3 = document.querySelector('output[for="controllTD3"]');
 
    slider.addEventListener('input', (e) => {
    const value = e.target.value;
@@ -67,6 +63,13 @@
    output2.textContent = value2;
    
 });
+
+ slider3.addEventListener('input', (e) => {
+   const value3 = e.target.value;
+   slider3.style.setProperty('--value', value3);
+   output3.textContent = value3;
+   
+});
     //var host = location.hostname;
     //console.log("Host : ", host);
     //var ws = new WebSocket('ws://' + host + ':8080');
@@ -75,20 +78,30 @@
     ws.onopen = function(){
       var resetState= { "button1": 0 };
       ws.send(JSON.stringify(resetState));
+
+      var resetSlider = {'slider1': 30, 'slider2':15, 'slider3':0};
+      ws.send(JSON.stringify(resetSlider));
+
     };
 
     var controlTD = document.getElementById("controllTD");
     var controlTD2 = document.getElementById("controllTD2");
+    var controlTD3 = document.getElementById("controllTD3");
 
     controlTD.addEventListener('input', (event) => {
       //console.log(controlTD.value);
-    ws.send(JSON.stringify({'slider2':controlTD.value, 'slider3':controlTD2.value}))
+    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value}))
       
     });
       
     controlTD2.addEventListener('input', (event) => {
     //console.log(controlTD.value);
-    ws.send(JSON.stringify({'slider2':controlTD.value, 'slider3':controlTD2.value}))
+    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value}))
+    });
+
+    controlTD3.addEventListener('input', (event) => {
+    //console.log(controlTD.value);
+    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value}))
     });
 
     var container = document.getElementById("buttonDiv");
@@ -103,8 +116,12 @@
        var newId =`button${buttonCount}`;
        
        var newButton = document.createElement('button');
-       newButton.innerText ="Again";
+       newButton.innerText ="again";
        newButton.style.position ='absolute';
+       newButton.style.mixBlendMode ='difference';
+       newButton.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0")
+
+
 
        var maxX = (window.innerWidth - (currentButton.offsetWidth || 50));
        var maxY = (window.innerHeight - (currentButton.offsetHeight || 50 ));
