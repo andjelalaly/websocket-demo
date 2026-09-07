@@ -27,7 +27,7 @@
     <div class="form-container">
       <label for="msgForm" class="message-label"><h2>What interests you?</h2></label> 
       <input type="text" class="message-input" id="msgForm">
-      <input type="submit" value="send" class="send-button">
+      <input type="submit" value="send" class="send-button" id="submit-button">
     </div>
   </form>
 </div>
@@ -83,10 +83,21 @@
       ws.send(JSON.stringify(resetSlider));
 
     };
-
+    
     var controlTD = document.getElementById("controllTD");
     var controlTD2 = document.getElementById("controllTD2");
     var controlTD3 = document.getElementById("controllTD3");
+    
+    const sliderColor = document.querySelectorAll('.slider').forEach(sliderElement => {
+      const randomColorSlider = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0");
+      sliderElement.style.setProperty('--progress-color', randomColorSlider);
+
+    });
+
+    const submitButton = document.getElementById("submit-button");
+    const randomColorSubmit = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0");
+    submitButton.style.backgroundColor = randomColorSubmit;
+
 
     controlTD.addEventListener('input', (event) => {
       //console.log(controlTD.value);
@@ -144,6 +155,7 @@
     }
     var buttonTD = document.getElementById("button1");
     buttonTD.style.position = 'absolute';
+    buttonTD.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "10")
     addButton(buttonTD, "button1")
 
     
