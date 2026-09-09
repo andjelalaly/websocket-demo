@@ -187,18 +187,32 @@ slider5.addEventListener('input', (e) => {
        container.appendChild(newButton);
        createdButtons.push(newButton);
 
-       if(buttonCount >= 5){
+       if(buttonCount >=5){
         const existingSlider = document.getElementById("controllTD");
         if(existingSlider) {
           existingSlider.style.position ='absolute';
           existingSlider.style.left = '10px'
-          existingSlider.style.top = '300px'
+          existingSlider.style.top = '290px'
+        } 
+      }
+
+      if (buttonCount >= 10){
+        const existingSlider2 = document.getElementById("controllTD2");
+        if(existingSlider2) {
+          existingSlider2.style.position ='absolute';
+          existingSlider2.style.right = '50px'
+          existingSlider2.style.top = '600px'
         }
-      }else{
-        const existingSlider = document.getElementById("controllTD");
-         existingSlider.style.position ='static'
       }
        
+       if (buttonCount >= 13){
+        const existingSlider3 = document.getElementById("controllTD3");
+        if(existingSlider3) {
+          existingSlider3.style.position ='absolute';
+          existingSlider3.style.right = '50px'
+          existingSlider3.style.top = '100px'
+        }
+      }
 
        if (!createClearButton){
         var clearButton= document.createElement('button');
@@ -223,9 +237,19 @@ slider5.addEventListener('input', (e) => {
           ws.send(JSON.stringify(buttonState));
           
           const movedSlider = document.getElementById("controllTD");
+          const movedSlider2 = document.getElementById("controllTD2");
+          const movedSlider3 = document.getElementById("controllTD3");
           
           if(movedSlider){
             movedSlider.style.position ='static'
+          }
+
+          if(movedSlider2){
+            movedSlider2.style.position ='static'
+          }
+
+          if(movedSlider3){
+            movedSlider3.style.position ='static'
           }
 
         });
