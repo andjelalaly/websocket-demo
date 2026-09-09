@@ -37,6 +37,9 @@
 
      <input  type="range" min="0" max="100" value="0" style="--value: 0;
     --min: 0; --max: 100;" id="controllTD4" class="slider"/><br>
+
+     <input  type="range" min="0" max="100" value="0" style="--value: 0;
+    --min: 0; --max: 100;" id="controllTD5" class="slider"/>
 </div>
 <div id="buttonDiv" class="button-container">
     <button type="button" id="button1" class="buttonprimary">click</button>
@@ -55,6 +58,9 @@
 
     const slider4 = document.getElementById("controllTD4");
     const output4 = document.querySelector('output[for="controllTD4"]');
+
+    const slider5 = document.getElementById("controllTD5");
+    const output5 = document.querySelector('output[for="controllTD5"]');
 
 
    slider.addEventListener('input', (e) => {
@@ -84,6 +90,13 @@ slider4.addEventListener('input', (e) => {
    output4.textContent = value4;
    
 });
+
+slider5.addEventListener('input', (e) => {
+   const value5 = e.target.value;
+   slider5.style.setProperty('--value', value5);
+   output5.textContent = value5;
+   
+});
     //var host = location.hostname;
     //console.log("Host : ", host);
     //var ws = new WebSocket('ws://' + host + ':8080');
@@ -93,7 +106,7 @@ slider4.addEventListener('input', (e) => {
       var resetState= { "button1": 0 };
       ws.send(JSON.stringify(resetState));
 
-      var resetSlider = {'slider1': 30, 'slider2':15, 'slider3':0, 'slider4':0};
+      var resetSlider = {'slider1': 30, 'slider2':15, 'slider3':0, 'slider4':0, 'slider5': 0};
       ws.send(JSON.stringify(resetSlider));
 
     };
@@ -102,6 +115,7 @@ slider4.addEventListener('input', (e) => {
     var controlTD2 = document.getElementById("controllTD2");
     var controlTD3 = document.getElementById("controllTD3");
     var controlTD4 = document.getElementById("controllTD4");
+     var controlTD5 = document.getElementById("controllTD5");
     
     const sliderColor = document.querySelectorAll('.slider').forEach(sliderElement => {
       const randomColorSlider = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0");
@@ -116,31 +130,36 @@ slider4.addEventListener('input', (e) => {
 
     controlTD.addEventListener('input', (event) => {
       //console.log(controlTD.value);
-    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value}));
+    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
       
     });
       
     controlTD2.addEventListener('input', (event) => {
     //console.log(controlTD.value);
-    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value}));
+    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
     });
 
     controlTD3.addEventListener('input', (event) => {
     //console.log(controlTD.value);
-    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value}));
+    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
     });
 
     controlTD4.addEventListener('input', (event) => {
     //console.log(controlTD.value);
-    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value}));
+    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
+    });
+
+    controlTD5.addEventListener('input', (event) => {
+    //console.log(controlTD.value);
+    ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
     });
 
 
     var container = document.getElementById("buttonDiv");
     var buttonCount = 1;
-    var  buttonState = {"button1" : 0 };
+    var buttonState = {"button1" : 0 };
     var createdButtons = [];
-    var createClearButton= false;
+    var createClearButton = false;
     //var buttonState = { "button0": 0 };
     
     function addButton(currentButton, currentId){
@@ -168,25 +187,47 @@ slider4.addEventListener('input', (e) => {
        container.appendChild(newButton);
        createdButtons.push(newButton);
 
+       if(buttonCount >= 5){
+        const existingSlider = document.getElementById("controllTD");
+        if(existingSlider) {
+          existingSlider.style.position ='absolute';
+          existingSlider.style.left = '10px'
+          existingSlider.style.top = '300px'
+        }
+      }else{
+        const existingSlider = document.getElementById("controllTD");
+         existingSlider.style.position ='static'
+      }
+       
+
        if (!createClearButton){
         var clearButton= document.createElement('button');
         clearButton.innerText="clear"
         clearButton.style.position ='absolute';
         clearButton.style.mixBlendMode ='difference';
-        clearButton.style.marginTop = '4cm'; 
+        clearButton.style.marginTop = '3.5cm'; 
 
         clearButton.addEventListener('click',() =>{
           createdButtons.forEach(btn=> btn.remove());
           createdButtons =[];
-
+          
+          
           var firstButton = document.getElementById("button1");
           if (firstButton) firstButton.disabled = false;
-
+          
           clearButton.remove();
           createClearButton = false;
           
           buttonState = {"button1": 0};
+          buttonCount = 1
           ws.send(JSON.stringify(buttonState));
+          
+          const movedSlider = document.getElementById("controllTD");
+          
+          if(movedSlider){
+            movedSlider.style.position ='static'
+          }
+
         });
         container.appendChild(clearButton);
         createClearButton = true;
@@ -203,7 +244,7 @@ slider4.addEventListener('input', (e) => {
     }
     var buttonTD = document.getElementById("button1");
     buttonTD.style.position = 'absolute';
-    buttonTD.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "10")
+    buttonTD.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0")
     addButton(buttonTD, "button1")
 
     

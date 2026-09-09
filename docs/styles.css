@@ -1,4 +1,4 @@
-@media screen and (max-width: 480px) {
+/*@media screen and (max-width: 480px) {*/
 body {
   background-color: rgb(0, 0, 0);
   overflow: hidden;
@@ -41,7 +41,7 @@ button:disabled {
   align-items: center;
 }
 .slider-container{
-  margin-top:40px;
+  margin-top:20px;
   display: grid;
   justify-content: center;
   align-items: center;
@@ -71,12 +71,12 @@ input[type=range] {
 appearance: none;
 background: transparent;
 width: 200px;
-margin-bottom: 20px;
+margin-bottom: 15px;
 
 
 } 
 input[type=range]::-webkit-slider-runnable-track {
-  height: 16px;
+  height: 15px;
   border-radius: 15px;
   
 }
@@ -127,5 +127,4 @@ input[type=range]::-webkit-slider-thumb {
    font-family: "Valley Sans", sans-serif;
    font-weight: 500;
    font-size: 18px;
-}
 }
