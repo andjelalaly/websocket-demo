@@ -265,10 +265,10 @@ slider5.addEventListener('input', (e) => {
             movedSlider.style.position ='static'
             movedSlider.value ='30'
             movedSlider.style.setProperty('--value',30)
-            slider2.value ='15'
-            slider2.style.setProperty('--value',15)
+            //slider2.value ='15'
+            //slider2.style.setProperty('--value',15)
             
-            ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
+            ws.send(JSON.stringify({'slider1': 30, 'slider2':15, 'slider3':0, 'slider4':0, 'slider5': 0}));
         
           }
 
@@ -276,10 +276,10 @@ slider5.addEventListener('input', (e) => {
             movedSlider2.style.position ='static'
             movedSlider.value ='30'
             movedSlider.style.setProperty('--value',30)
-            slider2.value ='15'
-            slider2.style.setProperty('--value',15)
+            //slider2.value ='15'
+            //slider2.style.setProperty('--value',15)
             
-            ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
+            ws.send(JSON.stringify({'slider1': 30, 'slider2':15, 'slider3':0, 'slider4':0, 'slider5': 0}));
            
         
           }
