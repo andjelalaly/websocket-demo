@@ -188,11 +188,15 @@ slider5.addEventListener('input', (e) => {
        createdButtons.push(newButton);
 
        if(buttonCount >=9){
-        const existingSlider = document.getElementById("controllTD");
-        if(existingSlider) {
-          existingSlider.style.position ='absolute';
-          existingSlider.style.left = '10px'
-          existingSlider.style.top = '290px'
+        if(slider) {
+          slider.style.position ='absolute';
+          slider.style.left = '10px'
+          slider.style.top = '290px'
+          slider.value ='10'
+          slider.style.setProperty('--value',10)
+          slider2.value ='90'
+          slider2.style.setProperty('--value',90)
+          ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
         } 
       }
 
@@ -202,6 +206,11 @@ slider5.addEventListener('input', (e) => {
           existingSlider2.style.position ='absolute';
           existingSlider2.style.right = '50px'
           existingSlider2.style.top = '600px'
+          slider.value ='50'
+          slider.style.setProperty('--value',50)
+          slider2.value ='30'
+          slider2.style.setProperty('--value',30)
+          ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
         }
       }
        
@@ -213,6 +222,18 @@ slider5.addEventListener('input', (e) => {
           existingSlider3.style.top = '100px'
         }
       }
+
+
+       if (buttonCount >= 24){
+        const existingSlider4 = document.getElementById("controllTD4");
+        if(existingSlider4) {
+          existingSlider4.style.position ='absolute';
+          existingSlider4.style.left = '50px'
+          existingSlider4.style.bottom = '100px'
+  
+        }
+      }
+
 
        if (!createClearButton){
         var clearButton= document.createElement('button');
@@ -242,16 +263,31 @@ slider5.addEventListener('input', (e) => {
           
           if(movedSlider){
             movedSlider.style.position ='static'
+            movedSlider.value ='30'
+            movedSlider.style.setProperty('--value',30)
+            slider2.value ='15'
+            slider2.style.setProperty('--value',15)
+            
+            ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
+        
           }
 
           if(movedSlider2){
             movedSlider2.style.position ='static'
+            movedSlider.value ='30'
+            movedSlider.style.setProperty('--value',30)
+            slider2.value ='15'
+            slider2.style.setProperty('--value',15)
+            
+            ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
+           
+        
           }
 
           if(movedSlider3){
             movedSlider3.style.position ='static'
           }
-
+          
         });
         container.appendChild(clearButton);
         createClearButton = true;
