@@ -265,8 +265,14 @@ slider5.addEventListener('input', (e) => {
             movedSlider.style.position ='static'
             movedSlider.value ='30'
             movedSlider.style.setProperty('--value',30)
-            //slider2.value ='15'
-            //slider2.style.setProperty('--value',15)
+            slider2.value ='15'
+            slider2.style.setProperty('--value',15)
+            slider3.value= '0'
+            slider3.style.setProperty('--value',0)
+            slider4.value= '0'
+            slider4.style.setProperty('--value',0)
+            slider5.value= '0'
+            slider5.style.setProperty('--value',0)
             
             ws.send(JSON.stringify({'slider1': 30, 'slider2':15, 'slider3':0, 'slider4':0, 'slider5': 0}));
         
@@ -276,8 +282,13 @@ slider5.addEventListener('input', (e) => {
             movedSlider2.style.position ='static'
             movedSlider.value ='30'
             movedSlider.style.setProperty('--value',30)
-            //slider2.value ='15'
-            //slider2.style.setProperty('--value',15)
+            slider2.style.setProperty('--value',15)
+            slider3.value= '0'
+            slider3.style.setProperty('--value',0)
+            slider4.value= '0'
+            slider4.style.setProperty('--value',0)
+            slider5.value= '0'
+            slider5.style.setProperty('--value',0)
             
             ws.send(JSON.stringify({'slider1': 30, 'slider2':15, 'slider3':0, 'slider4':0, 'slider5': 0}));
            
@@ -286,6 +297,15 @@ slider5.addEventListener('input', (e) => {
 
           if(movedSlider3){
             movedSlider3.style.position ='static'
+             movedSlider.value ='30'
+            movedSlider.style.setProperty('--value',30)
+            slider2.style.setProperty('--value',15)
+            slider3.value= '0'
+            slider3.style.setProperty('--value',0)
+            slider4.value= '0'
+            slider4.style.setProperty('--value',0)
+            slider5.value= '0'
+            slider5.style.setProperty('--value',0)
           }
           
         });
