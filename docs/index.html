@@ -220,6 +220,7 @@ slider5.addEventListener('input', (e) => {
           existingSlider3.style.position ='absolute';
           existingSlider3.style.right = '50px'
           existingSlider3.style.top = '100px'
+          ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
         }
       }
 
@@ -230,6 +231,7 @@ slider5.addEventListener('input', (e) => {
           existingSlider4.style.position ='absolute';
           existingSlider4.style.left = '50px'
           existingSlider4.style.bottom = '100px'
+           ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
   
         }
       }
