@@ -9,7 +9,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Valley+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 
-  <style></style>
+  <style>
+    @keyframes dynamicButton{
+      0%, 100% {opacity: 1; backround-color: var (--flicker-color);}
+      50% {opacity: 0.3; background-color: black;}
+    }
+      .flickering-button{
+        animation: dynamicButton 0.15s infinite alternate;
+      }
+     
+    
+  </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
@@ -172,32 +182,47 @@ slider5.addEventListener('input', (e) => {
        newButton.innerText ="again";
        newButton.style.position ='absolute';
        newButton.style.mixBlendMode ='difference';
-       newButton.style.backgroundColor = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0");
+       function getRandomColor(){
+       return "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0");
+      }
+       const initialcolor = getRandomColor();
+       newButton.style.backgroundColor = initialcolor;
+       newButton.style.setProperty('--flicker-color', initialcolor);
 
-
+       //setTimeout(buttonFlicker, 3000)
+       
+       
        var maxX = (window.innerWidth - (currentButton.offsetWidth || 50));
        var maxY = (window.innerHeight - (currentButton.offsetHeight || 50 ));
-
+       
        var randomX = Math.floor(Math.random()* Math.max(maxX-30))
        var randomY = Math.floor(Math.random()* Math.max(maxY-30))
-
+       
        newButton.style.left = `${randomX}px`;
        newButton.style.top = `${randomY}px`;;
-
+       
        container.appendChild(newButton);
        createdButtons.push(newButton);
-
+       
        if(buttonCount >=9){
-        if(slider) {
-          slider.style.position ='absolute';
-          slider.style.left = '10px'
-          slider.style.top = '290px'
-          slider.value ='10'
-          slider.style.setProperty('--value',10)
-          slider2.value ='90'
-          slider2.style.setProperty('--value',90)
-          ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
-        } 
+         if(slider) {
+           slider.style.position ='absolute';
+           slider.style.left = '10px'
+           slider.style.top = '290px'
+           slider.value ='10'
+           slider.style.setProperty('--value',10)
+           slider2.value ='90'
+           slider2.style.setProperty('--value',90)
+           ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
+          } 
+          
+             newButton.classList.add('flickering-button');
+             newButton.style.backgroundColor = getRandomColor()
+          
+             setInterval(() => {
+             newButton.style.backgroundColor = getRandomColor();},700);
+             newButton.style.setProperty('flicker-color',getRandomColor())
+          
       }
 
       if (buttonCount >= 15){
