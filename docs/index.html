@@ -12,10 +12,10 @@
   <style>
     @keyframes dynamicButton{
       0%, 100% {opacity: 1; backround-color: var (--flicker-color);}
-      50% {opacity: 0.3; background-color: black;}
+      50% {opacity: 0.8; background-color: black;}
     }
       .flickering-button{
-        animation: dynamicButton 0.15s infinite alternate;
+        animation: dynamicButton 0.3s infinite alternate;
       }
      
     
@@ -220,7 +220,7 @@ slider5.addEventListener('input', (e) => {
              newButton.style.backgroundColor = getRandomColor()
           
              setInterval(() => {
-             newButton.style.backgroundColor = getRandomColor();},700);
+             newButton.style.backgroundColor = getRandomColor();},1000);
              newButton.style.setProperty('flicker-color',getRandomColor())
           
       }
