@@ -12,7 +12,7 @@
   <style>
     @keyframes dynamicButton{
       0%, 100% {opacity: 1; backround-color: var (--flicker-color);}
-      50% {opacity: 0.8; background-color: black;}
+      50% {opacity: 0.7; background-color: black;}
     }
       .flickering-button{
         animation: dynamicButton 0.3s infinite alternate;
@@ -125,7 +125,7 @@ slider5.addEventListener('input', (e) => {
     var controlTD2 = document.getElementById("controllTD2");
     var controlTD3 = document.getElementById("controllTD3");
     var controlTD4 = document.getElementById("controllTD4");
-     var controlTD5 = document.getElementById("controllTD5");
+    var controlTD5 = document.getElementById("controllTD5");
     
     const sliderColor = document.querySelectorAll('.slider').forEach(sliderElement => {
       const randomColorSlider = "#" + ((1 << 24) * Math.random() | 0).toString(16).padStart(6, "0");
@@ -199,7 +199,7 @@ slider5.addEventListener('input', (e) => {
        var randomY = Math.floor(Math.random()* Math.max(maxY-30))
        
        newButton.style.left = `${randomX}px`;
-       newButton.style.top = `${randomY}px`;;
+       newButton.style.top = `${randomY}px`;
        
        container.appendChild(newButton);
        createdButtons.push(newButton);
@@ -207,12 +207,17 @@ slider5.addEventListener('input', (e) => {
        if(buttonCount >=9){
          if(slider) {
            slider.style.position ='absolute';
-           slider.style.left = '10px'
-           slider.style.top = '290px'
+           slider.style.left = `${randomX}px`;
+           slider.style.top = `${randomY}px`;
+
            slider.value ='10'
            slider.style.setProperty('--value',10)
            slider2.value ='90'
            slider2.style.setProperty('--value',90)
+          
+           slider4.style.position ='absolute';
+           slider4.style.left =`${randomX}px`;
+           slider4.style.bottom =`${randomY}px`;
            ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
           } 
           
@@ -228,12 +233,12 @@ slider5.addEventListener('input', (e) => {
       if (buttonCount >= 15){
         const existingSlider2 = document.getElementById("controllTD2");
         if(existingSlider2) {
-          existingSlider2.style.position ='absolute';
-          existingSlider2.style.right = '50px'
-          existingSlider2.style.top = '600px'
-          slider.value ='50'
+          existingSlider2.style.position ='absolute'
+          existingSlider2.style.right = `${randomX}px`;
+          existingSlider2.style.top = `${randomY}px`;
+          slider.value ='50';
           slider.style.setProperty('--value',50)
-          slider2.value ='30'
+          slider2.value ='30'; 
           slider2.style.setProperty('--value',30)
           ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
         }
@@ -243,8 +248,8 @@ slider5.addEventListener('input', (e) => {
         const existingSlider3 = document.getElementById("controllTD3");
         if(existingSlider3) {
           existingSlider3.style.position ='absolute';
-          existingSlider3.style.right = '50px'
-          existingSlider3.style.top = '100px'
+          existingSlider3.style.right = `${randomX}px`;
+          existingSlider3.style.top = `${randomY}px`
           ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
         }
       }
@@ -254,7 +259,7 @@ slider5.addEventListener('input', (e) => {
         const existingSlider4 = document.getElementById("controllTD4");
         if(existingSlider4) {
           existingSlider4.style.position ='absolute';
-          existingSlider4.style.left = '50px'
+          existingSlider4.style.left = `${randomX}px`;
           existingSlider4.style.bottom = '100px'
            ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
   
