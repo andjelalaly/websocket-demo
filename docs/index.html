@@ -260,7 +260,7 @@ slider5.addEventListener('input', (e) => {
         if(existingSlider4) {
           existingSlider4.style.position ='absolute';
           existingSlider4.style.left = `${randomX}px`;
-          existingSlider4.style.bottom = '100px'
+          existingSlider4.style.bottom = `${randomY}px`;
            ws.send(JSON.stringify({'slider1':controlTD.value, 'slider2':controlTD2.value, 'slider3':controlTD3.value, 'slider4':controlTD4.value, 'slider5':controlTD5.value}));
   
         }
@@ -292,6 +292,7 @@ slider5.addEventListener('input', (e) => {
           const movedSlider = document.getElementById("controllTD");
           const movedSlider2 = document.getElementById("controllTD2");
           const movedSlider3 = document.getElementById("controllTD3");
+          const movedSlider4 = document.getElementById("controllTD4");
           
           if(movedSlider){
             movedSlider.style.position ='static'
@@ -329,7 +330,7 @@ slider5.addEventListener('input', (e) => {
 
           if(movedSlider3){
             movedSlider3.style.position ='static'
-             movedSlider.value ='30'
+            movedSlider.value ='30'
             movedSlider.style.setProperty('--value',30)
             slider2.style.setProperty('--value',15)
             slider3.value= '0'
@@ -338,6 +339,23 @@ slider5.addEventListener('input', (e) => {
             slider4.style.setProperty('--value',0)
             slider5.value= '0'
             slider5.style.setProperty('--value',0)
+          }
+
+          if(movedSlider4){
+            movedSlider4.style.position ='static'
+            movedSlider.value ='30'
+            movedSlider.style.setProperty('--value',30)
+            slider2.style.setProperty('--value',15)
+            slider3.value= '0'
+            slider3.style.setProperty('--value',0)
+            slider4.value= '0'
+            slider4.style.setProperty('--value',0)
+            slider5.value= '0'
+            slider5.style.setProperty('--value',0)
+            
+            ws.send(JSON.stringify({'slider1': 30, 'slider2':15, 'slider3':0, 'slider4':0, 'slider5': 0}));
+           
+        
           }
           
         });
